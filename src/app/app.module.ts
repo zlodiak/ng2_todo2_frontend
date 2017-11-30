@@ -4,17 +4,33 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 
 import { AppComponent } from './app.component';
+import { ListComponent } from './components/list/list.component';
+import { DetailsComponent } from './components/details/details.component';
+import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
+import { LoginComponent } from './components/login/login.component';
+
+import { UsersService } from './services/users.service';
+import { TodosService } from './services/todos.service';
+import { GlobalVarsService } from './services/global-vars.service';
 
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    ListComponent,
+    DetailsComponent,
+    PageNotFoundComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule
   ],
-  providers: [],
+  providers: [
+    GlobalVarsService,
+    TodosService,
+    UsersService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
