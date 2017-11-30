@@ -28,8 +28,7 @@ export class LoginComponent implements OnInit {
   private getAllUsersData(): void {
   	this.usersService.getUsers().subscribe(
       data => {   
-        //console.log(data);  
-        this.allUsersData = JSON.parse(data.json());                 
+        this.allUsersData = data;                 
         console.log(this.allUsersData);
       }, 
       err => {

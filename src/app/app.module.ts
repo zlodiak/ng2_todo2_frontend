@@ -1,6 +1,10 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpModule } from '@angular/http';
+import { FormsModule } from '@angular/forms'; 
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {  MatButtonModule,
+          MatInputModule } from '@angular/material';
 
 import { AppRoutingModule } from './app-routing.module';
 
@@ -24,6 +28,10 @@ import { GlobalVarsService } from './services/global-vars.service';
     LoginComponent
   ],
   imports: [
+    MatInputModule,
+    FormsModule,
+    MatButtonModule,
+    BrowserAnimationsModule,
     HttpModule,
     BrowserModule,
     AppRoutingModule
