@@ -18,6 +18,7 @@ import { LoginComponent } from './components/login/login.component';
 import { UsersService } from './services/users.service';
 import { TodosService } from './services/todos.service';
 import { GlobalVarsService } from './services/global-vars.service';
+import { AuthGuardService } from './services/auth-guard.service';
 
 
 @NgModule({
@@ -38,6 +39,7 @@ import { GlobalVarsService } from './services/global-vars.service';
     AppRoutingModule
   ],
   providers: [
+    AuthGuardService,
     GlobalVarsService,
     TodosService,
     UsersService

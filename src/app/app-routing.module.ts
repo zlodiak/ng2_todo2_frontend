@@ -5,6 +5,7 @@ import { ListComponent } from './components/list/list.component';
 import { DetailsComponent } from './components/details/details.component';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 import { LoginComponent } from './components/login/login.component';
+import { AuthGuardService } from './services/auth-guard.service';
 
 
 const routes: Routes = [
@@ -16,11 +17,13 @@ const routes: Routes = [
   {
     path: 'list',
     children: [],
+    canActivate: [AuthGuardService],
     component: ListComponent
   }, 
   {
     path: 'details',
     children: [],
+    canActivate: [AuthGuardService],
     component: DetailsComponent
   },
   {
