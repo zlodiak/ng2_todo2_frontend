@@ -43,6 +43,8 @@ export class ListComponent implements OnInit {
   private getTodos(): void {
   	let userId = this.globalVarsService.getVar('authorizedPk');
 
+  	console.log('userId', userId);
+
   	this.todosService.getTodos(userId).subscribe(
       data => {   
       	//console.log(data);
@@ -54,7 +56,7 @@ export class ListComponent implements OnInit {
         });
       }, 
       err => {
-        console.log('err')         
+        console.log('err', err)         
       })  	
   };
 
@@ -62,7 +64,7 @@ export class ListComponent implements OnInit {
   	let title = this.newTodo;
   	let userId = this.globalVarsService.getVar('authorizedPk');
 
-  	console.log(title, userId);
+  	//console.log(title, userId);
 
   	this.todosService.createTodo(userId, title).subscribe(
       data => {   
@@ -77,7 +79,7 @@ export class ListComponent implements OnInit {
       	this.getTodos();
       }, 
       err => {
-        console.log('err')         
+        console.log('err', err)         
       })
   }; 
 }
