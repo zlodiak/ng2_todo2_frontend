@@ -5,7 +5,9 @@ import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms'; 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {  MatButtonModule,
-          MatInputModule } from '@angular/material';
+          MatInputModule,
+          MatCardModule,
+          MatCheckboxModule } from '@angular/material';
 
 import { AppRoutingModule } from './app-routing.module';
 
@@ -30,6 +32,8 @@ import { AuthGuardService } from './services/auth-guard.service';
     LoginComponent
   ],
   imports: [
+    MatCheckboxModule,
+    MatCardModule,
     MatInputModule,
     FormsModule,
     MatButtonModule,

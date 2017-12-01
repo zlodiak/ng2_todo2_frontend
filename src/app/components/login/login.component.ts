@@ -34,18 +34,19 @@ export class LoginComponent implements OnInit {
   		return;
   	}
 
-  	let isAuthOk = false;
+    let isAuthOk = false;
+  	let userPk;
 
     this.allUsersData.forEach((user) => {
-    	console.log(user);    	
-
     	if(user.fields.login == this.login && user.fields.password == this.password) {
-    		isAuthOk = true;   		
+    		isAuthOk = true;   	
+        userPk = user.pk;	
     	}
     });
 
     if(isAuthOk) {
       this.globalVarsService.setVar('authorizedLogin', this.login);
+      this.globalVarsService.setVar('authorizedPk', userPk);
       this.router.navigate(['/list']); 
     } else {
       alert('auth failed');
