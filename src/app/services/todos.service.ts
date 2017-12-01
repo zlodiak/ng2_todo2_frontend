@@ -49,4 +49,9 @@ export class TodosService {
     return this.http.get(req);
   };  
 
+  removeTodosCompleted(userId): Observable<any> {
+    let req = 'http://127.0.0.1:8000/app_todo2/remove_todos_completed?user_id=' + userId   
+    return this.http.get(req);
+  };   
+
 }

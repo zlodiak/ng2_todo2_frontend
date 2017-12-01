@@ -34,9 +34,9 @@
   </div>
 
   <div class="actions">
-    <!-- <div class="inner cnt">{{ todos.length }} items left</div>
+    <div class="inner cnt">{{ completedTodosCnt }} items left</div>
 
-    <div class="inner visibility">
+    <!-- <div class="inner visibility">
       <button class="btn btn-common" 
               id="All" type="button" 
               mat-button 
@@ -55,14 +55,14 @@
               mat-button 
               [ngClass]="{active: activeBtn == 'Completed'}" 
               (click)="setActiveBtn('Completed')">Completed</button>
-    </div>
+    </div> -->
 
     <div class="inner clear">
       <button class="btn btn-common" 
-                    id="clearCompleted" 
+                    id="removeTodosCompleted" 
                     type="button" 
                     mat-button 
-                    (click)="clearCompleted()">Clear completed</button>
-    </div> -->
+                    (click)="removeTodosCompleted()">Clear completed</button>
+    </div>
   </div>
 </mat-card>

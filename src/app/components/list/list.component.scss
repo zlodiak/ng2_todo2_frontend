@@ -31,7 +31,7 @@
 			}
 
 			.title-area{
-				width: calc(100% - 100px);
+				width: calc(100% - 50px);
 
 				&.checked{
 					text-decoration:line-through;
@@ -41,10 +41,14 @@
 
 			.remove-area{
 				width: 50px;
+				display: flex;
+				flex-wrap: nowrap;
+				justify-content: flex-end;
+				align-items: flex-start;					
 
 				.icon{
 					display: none;
-					cursor: pointer;
+					cursor: pointer;					
 				}
 
 				.material-icons{

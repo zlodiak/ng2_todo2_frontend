@@ -15,6 +15,8 @@ export class ListComponent implements OnInit {
 	private todos: any[] = [];
 	private checkboxes: Object = {};
   private isAllChecked: boolean = false;
+  private completedTodosCnt: number = 0;
+  private userIdAuthorized = this.globalVarsService.getVar('authorizedPk');  
 
   constructor(private todosService: TodosService,
   						private globalVarsService: GlobalVarsService) { }
@@ -24,9 +26,7 @@ export class ListComponent implements OnInit {
   }
 
   private toggleAllChecked(): void {
-    let userId = this.globalVarsService.getVar('authorizedPk');   
-
-    this.todosService.updateTodos(userId, this.isAllChecked).subscribe(
+    this.todosService.updateTodos(this.userIdAuthorized, this.isAllChecked).subscribe(
       data => {   
         // console.log(data);
         this.getTodos();
@@ -50,18 +50,17 @@ export class ListComponent implements OnInit {
   };  
 
   private getTodos(): void {
-  	let userId = this.globalVarsService.getVar('authorizedPk');
-
-  	// console.log('userId', userId);
-
-  	this.todosService.getTodos(userId).subscribe(
+  	this.todosService.getTodos(this.userIdAuthorized).subscribe(
       data => {   
       	// console.log(data);
         this.todos = JSON.parse(data);                 
-        // console.log('this.todos', this.todos);
 
+        this.completedTodosCnt = 0;
         this.todos.forEach((todo) => {          
-        	this.checkboxes[todo.pk] = todo.fields.isCompleted;
+        	this.checkboxes[todo.pk] = todo.fields.isCompleted;          
+          if(!todo.fields.isCompleted) {
+            this.completedTodosCnt++;
+          }
         });
       }, 
       err => {
@@ -71,11 +70,8 @@ export class ListComponent implements OnInit {
 
   private createTodo(): void {
   	let title = this.newTodo;
-  	let userId = this.globalVarsService.getVar('authorizedPk');
 
-  	// console.log(title, userId);
-
-  	this.todosService.createTodo(userId, title).subscribe(
+  	this.todosService.createTodo(this.userIdAuthorized, title).subscribe(
       data => {   
       	// console.log(data);
         let data_ = JSON.parse(data);
@@ -103,4 +99,16 @@ export class ListComponent implements OnInit {
       }        
     );
   };
+
+  private removeTodosCompleted(userId): void {
+    this.todosService.removeTodosCompleted(this.userIdAuthorized).subscribe(
+      data => {   
+        // console.log(data);
+        this.getTodos();
+      }, 
+      err => {
+        // console.log('err', err)         
+      }        
+    );
+  };  
 }
