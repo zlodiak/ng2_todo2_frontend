@@ -4,7 +4,6 @@ import { Router } from '@angular/router'
 
 import { UsersService } from '../../services/users.service';
 import { GlobalVarsService } from '../../services/global-vars.service';
-import { User } from '../../types/user';
 
 
 @Component({
@@ -16,7 +15,7 @@ export class LoginComponent implements OnInit {
 
 	private login: string = '';
   private password: string = '';
-	private allUsersData: User[] = [];	
+	private allUsersData: any[] = [];	
 
   constructor(private usersService: UsersService, 
               private globalVarsService: GlobalVarsService,
@@ -57,8 +56,8 @@ export class LoginComponent implements OnInit {
   private getAllUsersData(): void {
   	this.usersService.getUsers().subscribe(
       data => {   
-        this.allUsersData = data;                 
-        //console.log(this.allUsersData, typeof this.allUsersData);
+        this.allUsersData = JSON.parse(data);                 
+        // console.log(this.allUsersData, typeof this.allUsersData);
       }, 
       err => {
         // console.log('err', err)         

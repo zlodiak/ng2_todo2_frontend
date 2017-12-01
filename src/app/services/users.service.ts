@@ -11,7 +11,7 @@ export class UsersService {
   constructor(private http: HttpClient) { };
 
   getUsers(): Observable<any> {
-  	return this.http.get('http://127.0.0.1:8000/app_todo2/users_list').map(data => JSON.parse(data));
+  	return this.http.get('http://127.0.0.1:8000/app_todo2/users_list');
   };
 
 }

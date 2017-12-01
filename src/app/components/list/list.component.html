@@ -23,13 +23,13 @@
                       (change)="toggleTodoState(todo.pk, checkboxes[todo.pk])"></mat-checkbox>
       </div>
 
-      <div class="inner title-area">{{ todo.fields.title }}</div>
+      <div class="inner title-area" [ngClass]="{checked: checkboxes[todo.pk]}">{{ todo.fields.title }}</div>
 
-      <!-- <div class="inner remove-area">
+      <div class="inner remove-area">
         <div class="icon">
           <i class="material-icons" (click)="removeTodo(todo.pk)">close</i>
         </div>
-      </div> -->
+      </div>
     </div>
   </div>
 

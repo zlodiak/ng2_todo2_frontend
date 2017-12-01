@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 import { TodosService } from '../../services/todos.service';
 import { GlobalVarsService } from '../../services/global-vars.service';
-import { Todo } from '../../types/todo';
+
 
 @Component({
   selector: 'app-list',
@@ -12,7 +12,7 @@ import { Todo } from '../../types/todo';
 export class ListComponent implements OnInit {
 
 	private newTodo: string = '';
-	private todos: Todo[] = [];
+	private todos: any[] = [];
 	private checkboxes: Object = {};
 
   constructor(private todosService: TodosService,
@@ -23,22 +23,15 @@ export class ListComponent implements OnInit {
   }
 
   private toggleTodoState(todoId, state): void {
-  	// console.log(todoId, state);
-  	this.todos.forEach((todo) => {
-  		if(todo.pk === todoId) {
-  			todo.isChecked = state;
-  			this.todosService.updateTodo(todoId, state).subscribe(
-		      data => {   
-		      	// console.log(data);
-		      }, 
-		      err => {
-		        // console.log('err', err)         
-		      }	      
-		    );
-
-  			return;
-  		}
-  	});
+    this.todosService.updateTodo(todoId, state).subscribe(
+      data => {   
+        // console.log(data);
+        this.getTodos();
+      }, 
+      err => {
+        // console.log('err', err)         
+      }        
+    );
   };  
 
   private getTodos(): void {
@@ -49,10 +42,10 @@ export class ListComponent implements OnInit {
   	this.todosService.getTodos(userId).subscribe(
       data => {   
       	// console.log(data);
-        this.todos = data;                 
+        this.todos = JSON.parse(data);                 
         // console.log('this.todos', this.todos);
 
-        this.todos.forEach((todo) => {
+        this.todos.forEach((todo) => {          
         	this.checkboxes[todo.pk] = todo.fields.isCompleted;
         });
       }, 
@@ -70,10 +63,11 @@ export class ListComponent implements OnInit {
   	this.todosService.createTodo(userId, title).subscribe(
       data => {   
       	// console.log(data);
+        let data_ = JSON.parse(data);
 
-      	if(data.request_status === 0) {
-      		alert(data.error_message);
-      	} else if(data.request_status === 1) {
+      	if(data_.request_status === 0) {
+      		alert(data_.error_message);
+      	} else if(data_.request_status === 1) {
       		alert('todo create');
       	}
 
@@ -83,4 +77,16 @@ export class ListComponent implements OnInit {
         // console.log('err', err)         
       })
   }; 
+
+  private removeTodo(todoId): void {
+    this.todosService.removeTodo(todoId).subscribe(
+      data => {   
+        // console.log(data);
+        this.getTodos();
+      }, 
+      err => {
+        // console.log('err', err)         
+      }        
+    );
+  };
 }
