@@ -14,6 +14,7 @@ export class ListComponent implements OnInit {
 	private newTodo: string = '';
 	private todos: any[] = [];
 	private checkboxes: Object = {};
+  private isAllChecked: boolean = false;
 
   constructor(private todosService: TodosService,
   						private globalVarsService: GlobalVarsService) { }
@@ -21,6 +22,20 @@ export class ListComponent implements OnInit {
   ngOnInit() {
   	this.getTodos();
   }
+
+  private toggleAllChecked(): void {
+    let userId = this.globalVarsService.getVar('authorizedPk');   
+
+    this.todosService.updateTodos(userId, this.isAllChecked).subscribe(
+      data => {   
+        // console.log(data);
+        this.getTodos();
+      }, 
+      err => {
+        // console.log('err', err)         
+      }        
+    );
+  };  
 
   private toggleTodoState(todoId, state): void {
     this.todosService.updateTodo(todoId, state).subscribe(
@@ -67,11 +82,10 @@ export class ListComponent implements OnInit {
 
       	if(data_.request_status === 0) {
       		alert(data_.error_message);
-      	} else if(data_.request_status === 1) {
-      		alert('todo create');
       	}
 
       	this.getTodos();
+        this.newTodo = '';
       }, 
       err => {
         // console.log('err', err)         

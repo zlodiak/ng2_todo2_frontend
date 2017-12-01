@@ -39,6 +39,11 @@ export class TodosService {
     return this.http.get(req);
   };
 
+  updateTodos(userId, state): Observable<any> {
+    let req = 'http://127.0.0.1:8000/app_todo2/update_todos?user_id=' + userId + '&state=' + state    
+    return this.http.get(req);
+  };  
+
   removeTodo(todoId): Observable<any> {
     let req = 'http://127.0.0.1:8000/app_todo2/remove_todo?todo_id=' + todoId  
     return this.http.get(req);
