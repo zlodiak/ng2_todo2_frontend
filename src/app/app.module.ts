@@ -7,7 +7,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {  MatButtonModule,
           MatInputModule,
           MatCardModule,
-          MatCheckboxModule } from '@angular/material';
+          MatCheckboxModule,
+          MatDialogModule } from '@angular/material';
 
 import { AppRoutingModule } from './app-routing.module';
 
@@ -21,6 +22,7 @@ import { UsersService } from './services/users.service';
 import { TodosService } from './services/todos.service';
 import { GlobalVarsService } from './services/global-vars.service';
 import { AuthGuardService } from './services/auth-guard.service';
+import { InfoDialogComponent } from './dialogs/info-dialog/info-dialog.component';
 
 
 @NgModule({
@@ -29,9 +31,11 @@ import { AuthGuardService } from './services/auth-guard.service';
     ListComponent,
     DetailsComponent,
     PageNotFoundComponent,
-    LoginComponent
+    LoginComponent,
+    InfoDialogComponent
   ],
   imports: [
+    MatDialogModule,
     MatCheckboxModule,
     MatCardModule,
     MatInputModule,
@@ -48,6 +52,9 @@ import { AuthGuardService } from './services/auth-guard.service';
     TodosService,
     UsersService
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [
+    InfoDialogComponent
+  ]  
 })
 export class AppModule { }

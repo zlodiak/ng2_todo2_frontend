@@ -1,9 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 
 import { Router } from '@angular/router'
+import { MatDialog } from '@angular/material';
 
 import { UsersService } from '../../services/users.service';
 import { GlobalVarsService } from '../../services/global-vars.service';
+import { InfoDialogComponent } from '../../dialogs/info-dialog/info-dialog.component';
 
 
 @Component({
@@ -19,7 +21,8 @@ export class LoginComponent implements OnInit {
 
   constructor(private usersService: UsersService, 
               private globalVarsService: GlobalVarsService,
-              private router: Router) { }
+              private router: Router,
+              private matDialog: MatDialog) { }
 
   ngOnInit() {
   	this.getAllUsersData();
@@ -30,7 +33,11 @@ export class LoginComponent implements OnInit {
   	if(this.password) { this.password = this.password.trim(); }
 
   	if(!this.login || !this.password) {
-  		alert('enter auth data');
+      this.matDialog.open(InfoDialogComponent, {
+        width: '300px',
+        hasBackdrop: true,
+        data: { title: 'Error!', message: 'Please enter auth data' }
+      });      
   		return;
   	}
 
@@ -49,7 +56,11 @@ export class LoginComponent implements OnInit {
       this.globalVarsService.setVar('authorizedPk', userPk);
       this.router.navigate(['/list']); 
     } else {
-      alert('auth failed');
+      this.matDialog.open(InfoDialogComponent, {
+        width: '300px',
+        hasBackdrop: true,
+        data: { title: 'Error!', message: 'Authorization is failed' }
+      });       
     }
   };
 

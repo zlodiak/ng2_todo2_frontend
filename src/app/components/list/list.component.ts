@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 
+import { MatDialog } from '@angular/material';
+
 import { TodosService } from '../../services/todos.service';
 import { GlobalVarsService } from '../../services/global-vars.service';
+import { InfoDialogComponent } from '../../dialogs/info-dialog/info-dialog.component';
 
 
 @Component({
@@ -20,7 +23,8 @@ export class ListComponent implements OnInit {
   private modeDisplay: string = 'all';
 
   constructor(private todosService: TodosService,
-  						private globalVarsService: GlobalVarsService) { }
+  						private globalVarsService: GlobalVarsService,
+              private matDialog: MatDialog) { }
 
   ngOnInit() {
   	this.getTodos();
@@ -96,7 +100,11 @@ export class ListComponent implements OnInit {
         let data_ = JSON.parse(data);
 
       	if(data_.request_status === 0) {
-      		alert(data_.error_message);
+          this.matDialog.open(InfoDialogComponent, {
+            width: '300px',
+            hasBackdrop: true,
+            data: { title: 'Error!', message: data_.error_message }
+          });           
       	}
 
       	this.getTodos();
