@@ -15,12 +15,9 @@
   </div>
 
   <div class="todos-list">
-    <div  class="inner item" 
-          id="todo_{{ todo.pk }}"
-          *ngFor="let todo of todos">
+    <div  class="inner item" *ngFor="let todo of todos" [ngClass]="{hidden: checkModeDisplay(todo.fields.isCompleted)}">
       <div class="checkbox-area">
-        <mat-checkbox [(ngModel)]="checkboxes[todo.pk]" 
-                      (change)="toggleTodoState(todo.pk, checkboxes[todo.pk])"></mat-checkbox>
+        <mat-checkbox [(ngModel)]="checkboxes[todo.pk]" (change)="toggleTodoState(todo.pk, checkboxes[todo.pk])"></mat-checkbox>
       </div>
 
       <div class="inner title-area" [ngClass]="{checked: checkboxes[todo.pk]}">{{ todo.fields.title }}</div>
@@ -36,26 +33,23 @@
   <div class="actions">
     <div class="inner cnt">{{ completedTodosCnt }} items left</div>
 
-    <!-- <div class="inner visibility">
+    <div class="inner visibility">
       <button class="btn btn-common" 
-              id="All" type="button" 
               mat-button 
-              [ngClass]="{active: activeBtn == 'All'}" 
-              (click)="setActiveBtn('All')">All</button>
+              [ngClass]="{active: modeDisplay == 'all'}" 
+              (click)="setModeDisplay('all')">All</button>
 
       <button class="btn btn-common" 
-              id="Active" type="button" 
               mat-button 
-              [ngClass]="{active: activeBtn == 'Active'}" 
-              (click)="setActiveBtn('Active')">Active</button>
+              [ngClass]="{active: modeDisplay == 'active'}" 
+              (click)="setModeDisplay('active')">Active</button>
 
       <button class="btn btn-common" 
-              id="Completed" 
               type="button" 
               mat-button 
-              [ngClass]="{active: activeBtn == 'Completed'}" 
-              (click)="setActiveBtn('Completed')">Completed</button>
-    </div> -->
+              [ngClass]="{active: modeDisplay == 'completed'}" 
+              (click)="setModeDisplay('completed')">Completed</button>
+    </div>
 
     <div class="inner clear">
       <button class="btn btn-common" 

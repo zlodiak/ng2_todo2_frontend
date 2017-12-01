@@ -26,6 +26,10 @@
 			align-items: flex-start;		
 			padding-bottom: 10px;		
 
+			&.hidden{
+				display: none !important;
+			}
+
 			.checkbox-area{
 				width: 50px;
 			}

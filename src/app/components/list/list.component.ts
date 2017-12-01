@@ -17,6 +17,7 @@ export class ListComponent implements OnInit {
   private isAllChecked: boolean = false;
   private completedTodosCnt: number = 0;
   private userIdAuthorized = this.globalVarsService.getVar('authorizedPk');  
+  private modeDisplay: string = 'all';
 
   constructor(private todosService: TodosService,
   						private globalVarsService: GlobalVarsService) { }
@@ -24,6 +25,24 @@ export class ListComponent implements OnInit {
   ngOnInit() {
   	this.getTodos();
   }
+
+  private checkModeDisplay(isCompleted): boolean {
+    let hidden = false;
+
+    if(this.modeDisplay == 'active' && isCompleted) {
+      hidden = true;
+    } 
+
+    if(this.modeDisplay == 'completed' && !isCompleted) {
+      hidden = true;
+    }     
+
+    return hidden;
+  };
+
+  private setModeDisplay(mode): void {
+    this.modeDisplay = mode;
+  };
 
   private toggleAllChecked(): void {
     this.todosService.updateTodos(this.userIdAuthorized, this.isAllChecked).subscribe(
