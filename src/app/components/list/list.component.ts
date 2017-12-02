@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-
+import { Router } from '@angular/router';
 import { MatDialog } from '@angular/material';
 
 import { TodosService } from '../../services/todos.service';
@@ -24,7 +24,8 @@ export class ListComponent implements OnInit {
 
   constructor(private todosService: TodosService,
   						private globalVarsService: GlobalVarsService,
-              private matDialog: MatDialog) { }
+              private matDialog: MatDialog,
+              private router: Router) { }
 
   ngOnInit() {
   	this.getTodos();
@@ -134,5 +135,9 @@ export class ListComponent implements OnInit {
         // console.log('err', err)         
       }        
     );
+  };  
+
+  private openDetails(todoId): void {
+    this.router.navigate(['/details']);
   };  
 }

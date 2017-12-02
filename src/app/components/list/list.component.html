@@ -20,7 +20,7 @@
         <mat-checkbox [(ngModel)]="checkboxes[todo.pk]" (change)="toggleTodoState(todo.pk, checkboxes[todo.pk])"></mat-checkbox>
       </div>
 
-      <div class="inner title-area" [ngClass]="{checked: checkboxes[todo.pk]}">{{ todo.fields.title }}</div>
+      <div class="inner title-area" (click)="openDetails(todo.pk)" [ngClass]="{checked: checkboxes[todo.pk]}">{{ todo.fields.title }}</div>
 
       <div class="inner remove-area">
         <div class="icon">
