@@ -6,6 +6,7 @@ import { MatDialog } from '@angular/material';
 import { UsersService } from '../../services/users.service';
 import { GlobalVarsService } from '../../services/global-vars.service';
 import { InfoDialogComponent } from '../../dialogs/info-dialog/info-dialog.component';
+import { User } from '../../interfaces/user';
 
 
 @Component({
@@ -17,7 +18,7 @@ export class LoginComponent implements OnInit {
 
 	private login: string = '';
   private password: string = '';
-	private allUsersData: any[] = [];	
+	private allUsersData: User[] = [];	
 
   constructor(private usersService: UsersService, 
               private globalVarsService: GlobalVarsService,

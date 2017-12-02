@@ -72,7 +72,8 @@ export class ListComponent implements OnInit {
   	this.todosService.getTodos(this.userIdAuthorized).subscribe(
       data => {   
       	// console.log(data);
-        this.todos = JSON.parse(data);                 
+        this.todos = JSON.parse(data);   
+        console.log(this.todos);              
 
         this.completedTodosCnt = 0;
         this.todos.forEach((todo) => {          
@@ -80,7 +81,7 @@ export class ListComponent implements OnInit {
           if(!todo.fields.isCompleted) {
             this.completedTodosCnt++;
           }
-        });
+        });        
       }, 
       err => {
         // console.log('err', err)         
