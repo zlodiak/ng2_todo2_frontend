@@ -15,7 +15,7 @@
   </div>
 
   <div class="todos-list">
-    <div  class="inner item" *ngFor="let todo of todos" [ngClass]="{hidden: checkModeDisplay(todo.fields.isCompleted)}">
+    <div  class="inner item" *ngFor="let todo of displayedTodos" >
       <div class="checkbox-area">
         <mat-checkbox [(ngModel)]="checkboxes[todo.pk]" (change)="toggleTodoState(todo.pk, checkboxes[todo.pk])"></mat-checkbox>
       </div>

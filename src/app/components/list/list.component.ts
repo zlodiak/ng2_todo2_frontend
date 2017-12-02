@@ -30,19 +30,15 @@ export class ListComponent implements OnInit {
   	this.getTodos();
   }
 
-  private checkModeDisplay(isCompleted): boolean {
-    let hidden = false;
+  get displayedTodos() {
+    if (this.modeDisplay == 'active')
+      return this.todos.filter(todo => !todo.fields.isCompleted);
 
-    if(this.modeDisplay == 'active' && isCompleted) {
-      hidden = true;
-    } 
+    if (this.modeDisplay == 'completed')
+      return this.todos.filter(todo => todo.fields.isCompleted);
 
-    if(this.modeDisplay == 'completed' && !isCompleted) {
-      hidden = true;
-    }     
-
-    return hidden;
-  };
+    return this.todos;
+  }  
 
   private setModeDisplay(mode): void {
     this.modeDisplay = mode;
