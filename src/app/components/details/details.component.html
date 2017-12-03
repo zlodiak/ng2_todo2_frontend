@@ -1,1 +1,15 @@
-<div class="map" id="map"></div>
+<agm-map
+  [latitude]="originLat"
+  [longitude]="originLng"
+  (mapClick)="generateMarker($event)">  
+  <agm-marker
+    *ngFor="let m of markers"
+    [latitude]="m.lat"
+    [longitude]="m.lng">
+    <agm-info-window *ngIf="m.title">
+      <strong>{{ m.title }}</strong>
+    </agm-info-window>
+  </agm-marker>
+</agm-map>
+
+

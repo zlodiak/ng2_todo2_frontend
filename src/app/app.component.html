@@ -1,36 +1,6 @@
 <mat-sidenav-container class="side-nav-container">
   <mat-sidenav #sidenav class="left-sidenav" mode="push">
 		<div class="nav" (click)="closeSidenav(sidenav)">
-      <!-- <a class="link" [routerLink]="['/main']" routerLinkActive="active">
-        <i class="material-icons">change_history</i>
-        <span class="title">Начало</span>
-      </a> 
-
-		  <a class="link" [routerLink]="['/feedback']" routerLinkActive="active">
-		    <i class="material-icons icon">feedback</i>
-		    <span class="title">Отправить отзыв</span>
-		  </a>
-
-      <a class="link" [routerLink]="['/question']" routerLinkActive="active">
-        <i class="material-icons icon">question_answer</i>
-        <span class="title">Задать вопрос</span>
-      </a>   
-
-      <a class="link" [routerLink]="['/admin-feedback']" routerLinkActive="active" *ngIf="isAdmin">
-        <i class="material-icons">remove_red_eye</i>
-        <span class="title">Смотреть отзывы</span>
-      </a>   
-
-      <a class="link" [routerLink]="['/admin-question']" routerLinkActive="active" *ngIf="isAdmin">
-        <i class="material-icons">remove_red_eye</i>
-        <span class="title">Смотреть вопросы</span>
-      </a>               
-
-      <a class="link" (click)="logout()" routerLinkActive="active">
-        <i class="material-icons">power_settings_new</i>
-        <span class="title">Выйти</span>
-      </a>   -->   
-
 			<a class="link" [routerLink]="['/list']" routerLinkActive="active">
 			  <span class="title">list</span>
 			</a> 
@@ -46,7 +16,6 @@
 			<a class="link" (click)="logout()">
 			  <span class="title">logout</span>
 			</a> 
-
 		</div>
 
     <div class="copyrights">

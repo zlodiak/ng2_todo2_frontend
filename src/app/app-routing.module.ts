@@ -21,7 +21,7 @@ const routes: Routes = [
     component: ListComponent
   }, 
   {
-    path: 'details',
+    path: 'details/:todo_id',
     children: [],
     canActivate: [AuthGuardService],
     component: DetailsComponent

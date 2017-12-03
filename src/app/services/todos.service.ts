@@ -1,10 +1,9 @@
 import { Injectable } from '@angular/core';
 
 import { HttpClient } from '@angular/common/http';
-import { HttpParams } from "@angular/common/http";
+//import { HttpParams } from "@angular/common/http";
 
 import { Observable } from 'rxjs/Observable';
-import "rxjs/add/operator/map";
 
 
 @Injectable()
@@ -18,11 +17,10 @@ export class TodosService {
   };
 
   createTodo(userId, title): Observable<any> {
-	  const params = {
+	  /*const params = {
 	  	'user_id': userId,
 	  	'title': title
-	  };
-
+	  };*/
 	  // const params2 = new HttpParams().set('user_id', userId).set('title', title);
 	  
 	  // console.log('params', params);

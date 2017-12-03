@@ -138,6 +138,6 @@ export class ListComponent implements OnInit {
   };  
 
   private openDetails(todoId): void {
-    this.router.navigate(['/details']);
+    this.router.navigate(['/details', todoId]);
   };  
 }
