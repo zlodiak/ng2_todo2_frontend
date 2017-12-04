@@ -74,7 +74,7 @@ export class ListComponent implements OnInit {
       data => {   
       	// console.log(data);
         this.todos = JSON.parse(data);   
-        console.log(this.todos);              
+        // console.log(this.todos);              
 
         this.completedTodosCnt = 0;
         this.todos.forEach((todo) => {          

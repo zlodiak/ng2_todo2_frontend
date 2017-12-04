@@ -2,18 +2,14 @@
   <mat-sidenav #sidenav class="left-sidenav" mode="push">
 		<div class="nav" (click)="closeSidenav(sidenav)">
 			<a class="link" [routerLink]="['/list']" routerLinkActive="active">
-			  <span class="title">list</span>
+			  <span class="title">Todos list</span>
 			</a> 
 
-			<a class="link" [routerLink]="['/details']" routerLinkActive="active">
-			  <span class="title">details</span>
-			</a> 
-
-			<a class="link" [routerLink]="['/login']" routerLinkActive="active">
+			<a class="link" [routerLink]="['/login']" routerLinkActive="active" *ngIf="!userIdAuthorized">
 			  <span class="title">login</span>
 			</a> 
 
-			<a class="link" (click)="logout()">
+			<a class="link" (click)="logout()" *ngIf="userIdAuthorized">
 			  <span class="title">logout</span>
 			</a> 
 		</div>
@@ -30,7 +26,7 @@
   	</div>
 
   	<div class="in center">
-  		<div class="title" [ngClass]="{offset: !isAuthOk}">{{ headerTitle }}</div>
+  		<div class="title" [ngClass]="{offset: !isAuthOk}"><!-- {{ headerTitle }} --></div>
   	</div>
 
   	<div class="in right"></div>
